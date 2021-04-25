@@ -61,11 +61,11 @@ class AuthRepository with ChangeNotifier {
 
   Future changeAvatar(File avatarFile) async {
     try {
-      Reference ref = storage.ref('uploads/${_user?.email as String}.png');
+      Reference ref = storage.ref('uploads/${_user?.email!}.png');
       await ref.putFile(avatarFile);
       await _user?.updateProfile(photoURL: await ref.getDownloadURL());
       _user = _auth.currentUser;
-    } on FirebaseException catch (e) {
+    } on FirebaseException {
       // e.g, e.code == 'canceled'
     }
     notifyListeners();

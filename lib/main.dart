@@ -5,9 +5,7 @@ import 'package:hello_me/login_screen.dart';
 import 'package:hello_me/names_repository.dart';
 import 'package:hello_me/saved_screen.dart';
 import 'package:hello_me/suggestions_secreen.dart';
-import 'package:hello_me/user_profile.dart';
 import 'package:provider/provider.dart';
-import 'package:snapping_sheet/snapping_sheet.dart';
 
 import 'suggestions_secreen.dart';
 
@@ -20,7 +18,7 @@ void main() {
         create: (_) => NamesRepository(AuthRepository.instance()),
         update: (_, authRepository, namesRepository) {
           namesRepository?.update(authRepository);
-          return namesRepository as NamesRepository;
+          return namesRepository!;
         })
   ], child: App()));
 }
